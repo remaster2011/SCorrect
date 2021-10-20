@@ -6,7 +6,7 @@ insert = 2
 email = someone@something.com ; Your email!
 name = Zach Feodore ; Your name!
 ^!s:: ; ctrl + alt + s
-Menu Tray, Icon, C:\Users\xXKin\Desktop\SCorrect\scorrect.ico
+Menu Tray, Icon, %A_ScriptDir%\scorrect.ico
 
 Gui -MaximizeBox
 Gui Font, s9, Segoe UI
@@ -33,7 +33,7 @@ Gui Font
 Gui Font, s9, Segoe UI
 Gui Font
 Gui Font,, Segoe UI Variable Display Semib
-Gui Add, Text, x456 y120 w310 h211, `n`n     Version 0.0.1`n`n     * There are no changes! This is the first version!
+Gui Add, Text, x456 y120 w310 h211, `n`n     Version 0.0.2`n`n     * Added new quick type function, ]t to paste your time, ]d to paste your date, and ]td to paste your time and date. `n`n     * Fixed quick type key selection.
 Gui Font
 Gui Font, s9, Segoe UI
 Gui Add, Text, x432 y96 w342 h2 0x10
@@ -45,7 +45,7 @@ Gui Font, s9, Segoe UI
 Gui Add, Text, x808 y96 w285 h2 0x10
 Gui Font
 Gui Font, s14, Segoe UI Variable Display Semib
-Gui Add, DropDownList, x1032 y120 w61 vInsert, ]||>|*|!|@|*|^|`%|&
+Gui Add, DropDownList, x1032 y120 w61 gLabel vInsert, ]||>|*|!|@|*|^|`%|&
 Gui, Show 
 Gui, Submit, NoHide
 
@@ -98,6 +98,7 @@ Return
 Return
 Return
 Return
+Return
 #if SlangCorrect = 1 ; If the slangcorrect var is 1, it will enable the internet slang corrector.
 :*:ty::thank you
 :*:idk::i dont know
@@ -141,75 +142,210 @@ Return
 :*:sry::sorry
 :*:srry::sorry
 return
-#if Insert = 1
+#if Insert = "]"
 :*:]em::
 SendInput %email%
 return
-#if Insert = 2
+#if Insert = ">"
 :*:>em::
 SendInput %email%
 return
-#if insert = 3
+#if Insert = "#"
 :*:#em::
 SendInput %email%
 return
-#if insert = 4
+#if Insert = "!"
 :*:!em::
 SendInput %email%
 return
-#if insert = 5
+#if Insert = "@"
 :*:@em::
 SendInput %email%
 return
-#if insert = 6
+#if Insert = "*"
 :*:*em::
 SendInput %email%
 return
-#if insert = 7
+#if Insert = "^"
 :*:^em::
 SendInput %email%
 return
-#if insert = 8
+#if Insert = "%"
 :*:%em::
 SendInput %email%
 return
-#if insert = 9
+#if Insert = "&"
 :*:&em::
 SendInput %email%
 return
-#if insert = 1
+#if Insert = "]"
 :*:]na::
 SendInput %name%
 return
-#if insert = 2
+#if Insert = ">"
 :*:>na::
 SendInput %name%
 return
-#if insert = 3
+#if Insert = "#"
 :*:#na::
 SendInput %name%
 return
-#if insert = 4
+#if Insert = "!"
 :*:!na::
 SendInput %name%
 return
-#if insert = 5
+#if Insert = "@"
 :*:@na::
 SendInput %name%
 return
-#if insert = 6
-:*:*na::
+#if Insert = "*"
+:*:*n::
 SendInput %name%
 return
-#if insert = 7
+#if Insert = "^"
 :*:^na::
 SendInput %name%
 return
-#if insert = 8
+#if Insert = "%"
 :*:%na::
 SendInput %name%
 return
-#if insert = 9
+#if Insert = "&"
 :*:&na::
 SendInput %name%
+return
+#if Insert = "]"
+::]t::
+FormatTime, Time,, h:mm tt
+SendInput %Time%
+return
+#if Insert = ">"
+::>t::
+FormatTime, Time,, h:mm tt
+SendInput %Time%
+return
+#if Insert = "#"
+::#t::
+FormatTime, Time,, h:mm tt
+SendInput %Time%
+return
+#if Insert = "!"
+::!t::
+FormatTime, Time,, h:mm tt
+SendInput %Time%
+return
+#if Insert = "@"
+::@t::
+FormatTime, Time,, h:mm tt
+SendInput %Time%
+return
+#if Insert = "*"
+::*t::
+FormatTime, Time,, h:mm tt
+SendInput %Time%
+return
+#if Insert = "^"
+::^t::
+FormatTime, Time,, h:mm tt
+SendInput %Time%
+return
+#if Insert = "%"
+::%t::
+FormatTime, Time,, h:mm tt
+SendInput %Time%
+return
+#if Insert = "&"
+::&t::
+FormatTime, Time,, h:mm tt
+SendInput %Time%
+return
+#if Insert = "]"
+::]td::
+FormatTime, TimeDate,, M/d/yyyy h:mm tt
+SendInput %TimeDate%
+return
+#if Insert = ">"
+::>td::
+FormatTime, TimeDate,, M/d/yyyy h:mm tt
+SendInput %TimeDate%
+return
+#if Insert = "#"
+::#td::
+FormatTime, TimeDate,, M/d/yyyy h:mm tt
+SendInput %TimeDate%
+return
+#if Insert = "!"
+::!td::
+FormatTime, TimeDate,, M/d/yyyy h:mm tt
+SendInput %TimeDate%
+return
+#if Insert = "@"
+::@td::
+FormatTime, TimeDate,, M/d/yyyy h:mm tt
+SendInput %TimeDate%
+return
+#if Insert = "*"
+::*td::
+FormatTime, TimeDate,, M/d/yyyy h:mm tt
+SendInput %TimeDate%
+return
+#if Insert = "^"
+::^td::
+FormatTime, TimeDate,, M/d/yyyy h:mm tt
+SendInput %TimeDate%
+return
+#if Insert = "%"
+::%td::
+FormatTime, TimeDate,, M/d/yyyy h:mm tt
+SendInput %TimeDate%
+return
+#if Insert = "&"
+::&td::
+FormatTime, TimeDate,, M/d/yyyy h:mm tt
+SendInput %TimeDate%
+return
+#if Insert = "]"
+::]d::
+FormatTime, Date,, M/d/yyyy
+SendInput %Date%
+return
+#if Insert = ">"
+::>d::
+FormatTime, Date,, M/d/yyyy
+SendInput %Date%
+return
+#if Insert = "#"
+::#d::
+FormatTime, Date,, M/d/yyyy
+SendInput %Date%
+return
+#if Insert = "!"
+::!d::
+FormatTime, Date,, M/d/yyyy
+SendInput %Date%
+return
+#if Insert = "@"
+::@d::
+FormatTime, Date,, M/d/yyyy
+SendInput %Date%
+return
+#if Insert = "*"
+::*d::
+FormatTime, Date,, M/d/yyyy
+SendInput %Date%
+return
+#if Insert = "^"
+::^d::
+FormatTime, Date,, M/d/yyyy
+SendInput %Date%
+return
+#if Insert = "%"
+::%d::
+FormatTime, Date,, M/d/yyyy
+SendInput %Date%
+return
+#if Insert = "&"
+::&d::
+FormatTime, Date,, M/d/yyyy
+SendInput %Date%
 return
